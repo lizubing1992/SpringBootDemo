@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- 引入配置文件,非必须 -->
+    <properties resource="mybatis/db.properties"/>
+
+    <!-- 指定数据库驱动jar地址,可以pom.xml中设置 -->
+    <!--<classPathEntry location="${user.home}/.m2/repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar"/>-->
+
+    <!-- 配置环境
+     defaultModelType:指定生成模型类型策略
+     1.conditional:这是默认值,这个模型和下面的hierarchical类似，除了如果那个单独的类将只包含一个字段，将不会生成一个单独的类。 因此,如果一个
+     表的主键只有一个字段,那么不会为该字段生成单独的实体类,会将该字段合并到基本实体类中。
+     2.flat:该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。
+     3.hierarchical:如果表有主键,那么该模型会产生一个单独的主键实体类,如果表还有BLOB字段， 则会为表生成一个包含所有BLOB字段的单独的实体类,然
+     后为所有其他的字段生成一个单独的实体类。 MBG会在所有生成的实体类之间维护一个继承关系。 -->
+    <context id="mysql" defaultModelType="flat">
+
+        <!-- 是否取消注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments"  value="true"/>
+        </commentGenerator>
+
+        <!-- jdbc连接 -->
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}" password="${jdbc.password}"/>
+
+        <!-- 生成实体类 -->
+        <javaModelGenerator targetPackage="com.lizubing1992.demo.model"
+                            targetProject="src/main/java"/>
+
+        <!-- 生成maper.xml文件 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
+
+
+        <!-- 生成dao接口 -->
+        <javaClientGenerator targetPackage="com.lizubing1992.demo.dao"
+                             targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <!-- 配置表信息,不生成帮助类examples-->
+        <table schema="" tableName="t_user" domainObjectName="UserDO"
+               enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"/>
+    </context>
+</generatorConfiguration>
