@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lizubing1992.demo.dao.AuthorDOMapper">
-  <resultMap id="BaseResultMap" type="com.lizubing1992.demo.model.AuthorDO">
+<mapper namespace="com.lizubing1992.demo.dao.AuthorBeanMapper">
+  <resultMap id="BaseResultMap" type="com.lizubing1992.demo.model.AuthorBean">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id, real_name, nick_name
   </sql>
-  <select id="selectByExample" parameterType="com.lizubing1992.demo.model.AuthorDOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lizubing1992.demo.model.AuthorBeanExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from t_author
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lizubing1992.demo.model.AuthorDOExample">
+  <delete id="deleteByExample" parameterType="com.lizubing1992.demo.model.AuthorBeanExample">
     delete from t_author
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lizubing1992.demo.model.AuthorDO">
+  <insert id="insert" parameterType="com.lizubing1992.demo.model.AuthorBean">
     insert into t_author (id, real_name, nick_name
       )
     values (#{id,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lizubing1992.demo.model.AuthorDO">
+  <insert id="insertSelective" parameterType="com.lizubing1992.demo.model.AuthorBean">
     insert into t_author
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lizubing1992.demo.model.AuthorDOExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.lizubing1992.demo.model.AuthorBeanExample" resultType="java.lang.Long">
     select count(*) from t_author
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lizubing1992.demo.model.AuthorDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.lizubing1992.demo.model.AuthorBean">
     update t_author
     <set>
       <if test="realName != null">
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lizubing1992.demo.model.AuthorDO">
+  <update id="updateByPrimaryKey" parameterType="com.lizubing1992.demo.model.AuthorBean">
     update t_author
     set real_name = #{realName,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR}

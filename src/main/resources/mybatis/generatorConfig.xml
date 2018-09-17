@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
     <!-- 引入配置文件,非必须 -->
-    <properties resource="mybatis/db.properties"/>
+    <!--<properties resource="mybatis/db.properties"/>-->
 
     <!-- 指定数据库驱动jar地址,可以pom.xml中设置 -->
     <!--<classPathEntry location="${user.home}/.m2/repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar"/>-->
@@ -19,16 +19,22 @@
      3.hierarchical:如果表有主键,那么该模型会产生一个单独的主键实体类,如果表还有BLOB字段， 则会为表生成一个包含所有BLOB字段的单独的实体类,然
      后为所有其他的字段生成一个单独的实体类。 MBG会在所有生成的实体类之间维护一个继承关系。 -->
     <context id="mysql" defaultModelType="flat">
-
+        <plugin type="mybatis.generator.plugins.GeneratorSwagger2Doc">
+            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+            <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
+        </plugin>
         <!-- 是否取消注释 -->
         <commentGenerator>
             <property name="suppressAllComments"  value="true"/>
         </commentGenerator>
 
         <!-- jdbc连接 -->
-        <jdbcConnection driverClass="${jdbc.driverClassName}"
+       <!-- <jdbcConnection driverClass="${jdbc.driverClassName}"
                         connectionURL="${jdbc.url}"
-                        userId="${jdbc.username}" password="${jdbc.password}"/>
+                        userId="${jdbc.username}" password="${jdbc.password}"/>-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode = true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root" password="root"/>
 
         <!-- 生成实体类 -->
         <javaModelGenerator targetPackage="com.lizubing1992.demo.model"
@@ -44,7 +50,7 @@
                              targetProject="src/main/java" type="XMLMAPPER"/>
 
         <!-- 配置表信息,不生成帮助类examples-->
-        <table schema="" tableName="t_user" domainObjectName="UserDO"
+        <table schema="" tableName="t_author" domainObjectName="AuthorBean"
                enableCountByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" enableUpdateByExample="true"/>
     </context>

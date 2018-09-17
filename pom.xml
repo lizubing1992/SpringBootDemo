@@ -67,6 +67,11 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 	</dependencies>
 
 
@@ -88,6 +93,11 @@
 							<artifactId>mysql-connector-java</artifactId>
 							<version>5.1.44</version>
 						</dependency>
+						<dependency>
+							<groupId>com.github.misterchangray.mybatis.generator.plugins</groupId>
+							<artifactId>myBatisGeneratorPlugins</artifactId>
+							<version>1.2</version>
+						</dependency>
 					</dependencies>
 					<configuration>
 						<!-- 打印执行过程 -->
@@ -98,7 +108,7 @@
 						<configurationFile>${basedir}/src/main/resources/mybatis/generatorConfig.xml</configurationFile>
 						<!-- 生成部分mapper,指定table名字 -->
 						<tableNames>
-							t_user
+							t_author
 						</tableNames>
 					</configuration>
 				</plugin>

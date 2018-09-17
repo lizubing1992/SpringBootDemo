@@ -1,14 +1,23 @@
 package com.lizubing1992.demo.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="com.lizubing1992.demo.model.UserDO")
 public class UserDO {
+    @ApiModelProperty(value="tId编号")
     private Integer tId;
 
+    @ApiModelProperty(value="tName名称")
     private String tName;
 
+    @ApiModelProperty(value="tAge年龄")
     private Integer tAge;
 
+    @ApiModelProperty(value="tAddress家庭住址")
     private String tAddress;
 
+    @ApiModelProperty(value="tPassword")
     private String tPassword;
 
     public Integer gettId() {
